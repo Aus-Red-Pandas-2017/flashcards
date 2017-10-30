@@ -4,6 +4,8 @@ class DecksController < ApplicationController
    @decks = Deck.all
   end
 
+
+
 end
 
 

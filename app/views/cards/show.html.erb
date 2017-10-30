@@ -1,0 +1,28 @@
+ <style> form div { padding: 10px; } </style>
+
+<h1> Flashcards </h1>
+<div class="Question">
+
+<% if @wrong %>
+    <h1 style="color:red"><%= @wrong %></h1>
+    <h2> <%=@card.answer %></h2>
+  <% end %>
+
+  <% if @correct %>
+    <h1 style="color:limegreen"><%= @correct %></h1>
+    <h2> <%=@card.answer %></h2>
+  <% end %>
+
+<h2>Question: <%=@card.question %></h2>
+
+<% if !@wrong && !@correct %>
+<form method="post" action='/decks/<%= @card.deck_id %>/card/<%= @card.id %>'>
+  <label for="guess">Enter your guess:</label>
+  <input id="guess" name="guess" type="text"> <br><br>
+  <input type="submit" value="Submit">
+  <br>
+  <br>
+</form>
+ <% end %>
+
+<button><a href='/decks/<%= @card.deck_id %>/card/<%= @card.id.next %>'>Next</a></button>
