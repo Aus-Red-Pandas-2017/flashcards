@@ -1,5 +1,7 @@
 class CardsController < ApplicationController
 
+  before_action :authenticate_admin!, except: [:index, :show, :update]
+
   def show
     @card = Card.find(params[:id])
     @correct = "you got it!" if params['t']
@@ -20,6 +22,7 @@ class CardsController < ApplicationController
 #  end
 
   def update
+    binding.pry
     #patch
     card = Card.find(params[:id])
     if card.answer == params[:guess]
