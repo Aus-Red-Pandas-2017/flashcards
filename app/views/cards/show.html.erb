@@ -16,13 +16,16 @@
 <h2>Question: <%=@card.question %></h2>
 
 <% if !@wrong && !@correct %>
-<form method="post" action='/decks/<%= @card.deck_id %>/card/<%= @card.id %>'>
-  <label for="guess">Enter your guess:</label>
-  <input id="guess" name="guess" type="text"> <br><br>
-  <input type="submit" value="Submit">
-  <br>
-  <br>
-</form>
- <% end %>
 
-<button><a href='/decks/<%= @card.deck_id %>/card/<%= @card.id.next %>'>Next</a></button>
+  <%= form_with url:  deck_card_path, method: :patch do |form| %>
+    <%= form.label :guess, 'Enter your guess:' %>
+    <%= form.text_field :guess, id: :guess %>
+    <%= form.submit value: 'Submit' %>
+  <% end %>
+
+<% end %>
+
+<button><a href='/decks/<%= @card.deck_id %>/cards/<%= @card.id.next %>'>Next</a></button>
+
+<br><br>
+<a href="/decks">index</a>
